@@ -46,9 +46,11 @@
           <article class="space-y-6">
             <div class="rich-text">
               <h3>Cluster</h3>
+              <p>Class: <code>.cluster</code></p>
               <p>
-                A layout that lets you distribute items with consitent spacing,
-                regardless of their size.
+                Groups items together with equal spacing, allowing them to wrap
+                naturally when space is limited. Great for button groups, tag
+                lists, or inline navigation.
               </p>
               <p>
                 Use <code>.gap-*</code> to control the gap between each cluster
@@ -77,9 +79,12 @@
           <article class="space-y-6">
             <div class="rich-text">
               <h3>Repel</h3>
+              <p>Class: <code>.repel</code></p>
               <p>
-                A little layout that pushes items away from each other where
-                there is space in the viewport and stacks on small viewports.
+                Pushes two elements apart to opposite ends of a container while
+                keeping them vertically aligned. Great for headers, footers, or
+                any layout where you want one item on the left and another on
+                the right.
               </p>
 
               <p>
@@ -122,9 +127,11 @@
           <article class="space-y-6">
             <div class="rich-text">
               <h3>Switcher</h3>
+              <p>Class: <code>.switcher</code></p>
               <p>
-                A layout that allows you to lay 4 items next to each other until
-                there is not enough horizontal space to allow that.
+                Displays up to four items in a horizontal row when space allows,
+                and switches to a vertical stack on smaller widths. Useful for
+                responsive navigation, feature grids, or grouped controls.
               </p>
 
               <p>
@@ -151,11 +158,12 @@
           <article class="space-y-6">
             <div class="rich-text">
               <h3>Frame</h3>
+              <p>Class: <code>.frame</code></p>
               <p>
-                A layout that allows you to control the aspect ratio of the
-                element within it. Frame is mostly useful for cropping media
-                (videos and images) to a desired aspect ratio. This accepts any
-                value based on the aspect ratios set in the theme.
+                Maintains a fixed aspect ratio for its content (images, videos,
+                embeds) while allowing it to scale responsively without
+                distortion. This accepts any value based on the aspect ratios
+                set in the theme.
               </p>
             </div>
 
@@ -190,18 +198,16 @@
           <article class="space-y-6">
             <div class="rich-text">
               <h3>Full Bleed</h3>
-
+              <p>Class: <code>.full-bleed</code></p>
               <p>
-                Add <code>.full-bleed</code> to an element to make it break out
-                of it's container and fill the width of the screen—Thanks
-                <a
-                  href="https://archive.hankchizljaw.com/wrote/creating-a-full-bleed-css-utility/"
-                  rel="external"
-                  target="_blank"
-                  >Andy Bell</a
-                >.
+                Allows content to stretch the full viewport width, breaking out
+                of any container constraints like .wrapper. Ideal for
+                edge-to-edge images, backgrounds, or sections that visually
+                separate from the main layout.
               </p>
-              <p>This is perfect in combination with <code>.frame-*</code>.</p>
+              <p>
+                This works perfect in combination with <code>.frame-*</code>.
+              </p>
               <p>
                 If you want some breathing room around the edges, add
                 <code>.w-[*vw]</code>.
@@ -219,20 +225,16 @@
           <article class="space-y-6">
             <div class="rich-text">
               <h3>Stretch Link</h3>
+              <p>Class: <code>.stretch-link</code></p>
               <p>
-                The <code>.stretch-link</code> class is used to expand a link to
-                cover the full parent container. This is to avoid the evil sin
-                of wrapping the entire content in an anchor tag, which affects
-                accessibility.
+                Expands an inline link to cover its entire parent container,
+                making the whole area clickable while preserving the link’s
+                visual styling. Perfect for cards or list items where you want
+                easy, user-friendly click targets.
               </p>
               <p>
                 Make sure to add <code>.relative</code> to the parent element to
                 prevent the link from stretching outside the parent element.
-              </p>
-
-              <p>
-                The only issue with this solution is that it stops the text from
-                being highlighted.
               </p>
             </div>
 
@@ -259,11 +261,17 @@
           <article class="space-y-6">
             <div class="rich-text">
               <h3>Skip Link</h3>
+              <p>Class: <code>.skip-link</code></p>
               <p>
-                Skip links can help users quickly move past blocks of content
-                they do not want to navigate through.
+                Provides a hidden, keyboard-accessible link that lets users
+                quickly jump past repetitive or lengthy content to the main
+                section. Essential for improving navigation for keyboard and
+                screen reader users.
               </p>
-              <p>Test out the one at the top of this page by tabbing.</p>
+              <p>
+                Try tabbing to the top of this page to see the skip link in
+                action.
+              </p>
             </div>
           </article>
         </section>
