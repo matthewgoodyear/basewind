@@ -29,9 +29,9 @@ THEME CONFIG
   --spacing-fl-3xs: clamp(0.25rem, 0.2283rem + 0.1087vi, 0.3125rem);
   --spacing-fl-2xs: clamp(0.5rem, 0.4565rem + 0.2174vi, 0.625rem);
   --spacing-fl-xs: clamp(0.75rem, 0.6848rem + 0.3261vi, 0.9375rem);
-  --spacing-fl-s: clamp(1rem, 0.913rem + 0.4348vi, 1.25rem);
-  --spacing-fl-m: clamp(1.5rem, 1.3696rem + 0.6522vi, 1.875rem);
-  --spacing-fl-l: clamp(2rem, 1.8261rem + 0.8696vi, 2.5rem);
+  --spacing-fl-sm: clamp(1rem, 0.913rem + 0.4348vi, 1.25rem);
+  --spacing-fl-md: clamp(1.5rem, 1.3696rem + 0.6522vi, 1.875rem);
+  --spacing-fl-lg: clamp(2rem, 1.8261rem + 0.8696vi, 2.5rem);
   --spacing-fl-xl: clamp(3rem, 2.7391rem + 1.3043vi, 3.75rem);
   --spacing-fl-2xl: clamp(4rem, 3.6522rem + 1.7391vi, 5rem);
   --spacing-fl-3xl: clamp(6rem, 5.4783rem + 2.6087vi, 7.5rem);
@@ -39,10 +39,10 @@ THEME CONFIG
 
   --spacing-fl-3xs-2xs: clamp(0.25rem, 0.1196rem + 0.6522vi, 0.625rem);
   --spacing-fl-2xs-xs: clamp(0.5rem, 0.3478rem + 0.7609vi, 0.9375rem);
-  --spacing-fl-xs-s: clamp(0.75rem, 0.5761rem + 0.8696vi, 1.25rem);
-  --spacing-fl-s-m: clamp(1rem, 0.6957rem + 1.5217vi, 1.875rem);
-  --spacing-fl-m-l: clamp(1.5rem, 1.1522rem + 1.7391vi, 2.5rem);
-  --spacing-fl-l-xl: clamp(2rem, 1.3913rem + 3.0435vi, 3.75rem);
+  --spacing-fl-xs-sm: clamp(0.75rem, 0.5761rem + 0.8696vi, 1.25rem);
+  --spacing-fl-sm-md: clamp(1rem, 0.6957rem + 1.5217vi, 1.875rem);
+  --spacing-fl-md-lg: clamp(1.5rem, 1.1522rem + 1.7391vi, 2.5rem);
+  --spacing-fl-lg-xl: clamp(2rem, 1.3913rem + 3.0435vi, 3.75rem);
   --spacing-fl-xl-2xl: clamp(3rem, 2.3043rem + 3.4783vi, 5rem);
   --spacing-fl-2xl-3xl: clamp(4rem, 2.7826rem + 6.087vi, 7.5rem);
   --spacing-fl-3xl-4xl: clamp(6rem, 5.0435rem + 4.7826vi, 8.75rem);
@@ -207,7 +207,6 @@ A collection of single-purpose utility classes.
     flex-basis: calc((40rem - 100%) * 999);
   }
 
-  /* Max 4 items, so we target everything *after* those */
   > :nth-last-child(n + 5),
   > :nth-last-child(n + 5) ~ * {
     @apply basis-full;
@@ -216,13 +215,6 @@ A collection of single-purpose utility classes.
 @utility switcher-width-* {
   > * {
     flex-basis: calc((--value(--container-*) - 100%) * 999);
-  }
-}
-
-/* TODO - Stack */
-@utility stack-* {
-  > * + * {
-    margin-top: --value(--spacing-*);
   }
 }
 
