@@ -1,0 +1,221 @@
+@import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/* 
+THEME CONFIG
+*/
+
+@theme {
+  /* Resets */
+  /* --aspect-*: initial; */
+
+  /* Font Family */
+
+  /* Font Size */
+  --text-sm: clamp(0.8889rem, 0.8455rem + 0.2168vi, 1rem);
+  --text-base: clamp(1rem, 0.9024rem + 0.4878vi, 1.25rem);
+  --text-lg: clamp(1.125rem, 0.9543rem + 0.8537vi, 1.5625rem);
+  --text-xl: clamp(1.2656rem, 0.9973rem + 1.3415vi, 1.9531rem);
+  --text-2xl: clamp(1.4238rem, 1.0267rem + 1.9855vi, 2.4414rem);
+  --text-3xl: clamp(1.6018rem, 1.036rem + 2.8292vi, 3.0518rem);
+
+  /* Colours */
+
+  /* Spacing */
+  --spacing-fl-3xs: clamp(0.25rem, 0.2283rem + 0.1087vi, 0.3125rem);
+  --spacing-fl-2xs: clamp(0.5rem, 0.4565rem + 0.2174vi, 0.625rem);
+  --spacing-fl-xs: clamp(0.75rem, 0.6848rem + 0.3261vi, 0.9375rem);
+  --spacing-fl-s: clamp(1rem, 0.913rem + 0.4348vi, 1.25rem);
+  --spacing-fl-m: clamp(1.5rem, 1.3696rem + 0.6522vi, 1.875rem);
+  --spacing-fl-l: clamp(2rem, 1.8261rem + 0.8696vi, 2.5rem);
+  --spacing-fl-xl: clamp(3rem, 2.7391rem + 1.3043vi, 3.75rem);
+  --spacing-fl-2xl: clamp(4rem, 3.6522rem + 1.7391vi, 5rem);
+  --spacing-fl-3xl: clamp(6rem, 5.4783rem + 2.6087vi, 7.5rem);
+  --spacing-fl-4xl: clamp(7rem, 6.3913rem + 3.0435vi, 8.75rem);
+
+  /* One-up pairs */
+  --spacing-fl-3xs-2xs: clamp(0.25rem, 0.1196rem + 0.6522vi, 0.625rem);
+  --spacing-fl-2xs-xs: clamp(0.5rem, 0.3478rem + 0.7609vi, 0.9375rem);
+  --spacing-fl-xs-s: clamp(0.75rem, 0.5761rem + 0.8696vi, 1.25rem);
+  --spacing-fl-s-m: clamp(1rem, 0.6957rem + 1.5217vi, 1.875rem);
+  --spacing-fl-m-l: clamp(1.5rem, 1.1522rem + 1.7391vi, 2.5rem);
+  --spacing-fl-l-xl: clamp(2rem, 1.3913rem + 3.0435vi, 3.75rem);
+  --spacing-fl-xl-2xl: clamp(3rem, 2.3043rem + 3.4783vi, 5rem);
+  --spacing-fl-2xl-3xl: clamp(4rem, 2.7826rem + 6.087vi, 7.5rem);
+  --spacing-fl-3xl-4xl: clamp(6rem, 5.0435rem + 4.7826vi, 8.75rem);
+
+  /* Container */
+  --container-3xs: 16rem;
+  --container-2xs: 18rem;
+  --container-xs: 20rem;
+  --container-sm: 24rem;
+  --container-md: 28rem;
+  --container-lg: 32rem;
+  --container-xl: 36rem;
+  --container-2xl: 42rem;
+  --container-3xl: 48rem;
+  --container-4xl: 56rem;
+  --container-5xl: 64rem;
+  --container-6xl: 72rem;
+  --container-7xl: 80rem;
+
+  /* Aspect Ratios */
+  --aspect-square: 1 / 1;
+  --aspect-photo: 3 / 2;
+  --aspect-photo\/portrait: 2 / 3;
+  --aspect-landscape: 4 / 3;
+  --aspect-video: 16 / 9;
+  --aspect-phone: 9 / 16;
+  --aspect-cinema: 1.85 / 1;
+  --aspect-ultrawide: 18 / 5;
+}
+
+/* 
+BASE
+Low-specificity, core defaults that apply to the whole project.
+*/
+
+@layer base {
+  html {
+    @apply not-motion-reduce:scroll-smooth bg-blue-500;
+  }
+
+  html,
+  body {
+    @apply overflow-x-hidden;
+  }
+
+  body {
+    @apply relative py-fl-2xl-3xl text-base text-stone-900 dark:text-stone-50 dark:bg-stone-950 bg-stone-50;
+  }
+
+  p {
+    @apply max-w-prose;
+  }
+
+  p,
+  li,
+  figcaption {
+    @apply text-pretty;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply text-balance;
+  }
+
+  a {
+    @apply underline underline-offset-2 hover:text-stone-50 hover:bg-stone-950 decoration-stone-950 dark:decoration-stone-50 dark:hover:bg-stone-50 dark:hover:text-stone-950;
+  }
+
+  hr {
+    @apply border-t border-t-stone-300 dark:border-t-stone-700;
+  }
+
+  mark,
+  ::selection {
+    @apply bg-amber-200 text-stone-900;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-4 outline-inherit;
+  }
+
+  :target {
+    @apply scroll-my-[4ex];
+  }
+
+  button {
+    @apply inline-block cursor-pointer;
+  }
+
+  code {
+    @apply bg-stone-200 py-0.5 px-1.5 dark:bg-stone-800;
+  }
+}
+
+/* 
+COMPONENTS
+More complex, reusable design patterns that can be overridden with utility classes.
+*/
+
+@layer components {
+  .rich-text {
+    @apply prose dark:prose-invert prose-stone prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg prose-h4:text-base prose-p:text-base prose-code:text-[80%] prose-code:before:content-none prose-code:after:content-none prose-p:dark:text-stone-50 prose-p:text-stone-950 prose-headings:text-stone-950 prose-headings:dark:text-stone-50 prose-a:hover:text-stone-50 prose-a:dark:hover:text-stone-950 prose-a:hover:decoration-stone-950 prose-a:dark:hover:decoration-stone-50;
+  }
+}
+
+/* 
+UTILITIES
+A collection of single-purpose utility classes.
+*/
+
+/* Wrapper */
+@utility wrapper {
+  @apply px-4 relative mx-auto max-w-4xl;
+}
+
+/* Cluster */
+@utility cluster {
+  @apply gap-4 flex items-center justify-start flex-wrap;
+}
+
+/* Repel */
+@utility repel {
+  @apply flex gap-4 flex-wrap items-center justify-between;
+}
+
+/* Switcher */
+@utility switcher {
+  @apply flex flex-wrap gap-4 items-start;
+
+  > * {
+    @apply grow;
+    flex-basis: calc((40rem - 100%) * 999);
+  }
+
+  /* Max 4 items, so we target everything *after* those */
+  > :nth-last-child(n + 5),
+  > :nth-last-child(n + 5) ~ * {
+    @apply basis-full;
+  }
+}
+
+@utility switcher-width-* {
+  > * {
+    flex-basis: calc((--value(--container- *) - 100%) * 999);
+  }
+}
+
+/* TODO - Stack */
+@utility stack-* {
+  > * + * {
+    margin-top: --value(--spacing- *);
+  }
+}
+
+/* Frame */
+@utility frame-* {
+  @apply flex items-center justify-center overflow-hidden;
+  aspect-ratio: --value(--aspect- *);
+
+  > img,
+  > video {
+    @apply h-full w-full object-cover;
+  }
+}
+
+/* Stretch Link */
+@utility stretch-link {
+  &::after {
+    @apply absolute content-[''] inset-0 z-10;
+  }
+}
+
+/* Full Bleed */
+@utility full-bleed {
+  @apply w-screen ml-[50%] -translate-x-1/2;
+}

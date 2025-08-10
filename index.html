@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basewind</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+
+  <body data-theme="light">
+    <div class="wrapper | space-y-fl-2xl-3xl">
+      <header class="space-y-6">
+        <span
+          class="bg-amber-200 font-mono inline-flex items-center gap-1 rounded-md text-sm font-medium text-amber-900 px-2 py-1"
+        >
+          wip
+        </span>
+
+        <h1 class="text-3xl font-bold">Basewind</h1>
+
+        <p class="text-balance">
+          A supercharged Tailwind config with simple, custom composition utilities inspired by
+          <a href="https://every-layout.dev/" rel="external">Every Layout</a>, plus fluid typography
+          and spacing scales created with <a href="https://utopia.fyi/" rel="external">Utopia</a>.
+          Includes sensible global styles I find myself adding to nearly every project, along with a
+          growing collection of general-purpose utilities.
+        </p>
+
+        <a href="" class="btn" rel="external" target="_blank">Git Repo</a>
+      </header>
+
+      <hr />
+
+      <section class="space-y-8" aria-labelledby="compositions">
+        <h2 id="compositions" class="text-xl font-bold">Composition Utilities</h2>
+
+        <!-- Cluster -->
+        <article class="space-y-6">
+          <div class="rich-text">
+            <h3>Cluster</h3>
+            <p>
+              A layout that lets you distribute items with consitent spacing, regardless of their
+              size.
+            </p>
+            <p>Use <code>.gap-*</code> to control the gap between each cluster item.</p>
+            <p>
+              Use any flexbox aligmnent value to configure how the items align. The defualt is
+              <code>.items-center</code>
+            </p>
+          </div>
+
+          <div
+            class="p-6 bg-stone-100 border border-stone-200 rounded-lg resize-x overflow-auto max-w-full min-w-xs dark:bg-stone-900 dark:border dark:border-stone-800"
+          >
+            <div class="cluster | gap-2">
+              <div class="aspect-square size-12 md:size-32 bg-blue-500"></div>
+              <div class="aspect-square size-12 md:size-32 bg-blue-500"></div>
+              <div class="aspect-square size-12 md:size-32 bg-blue-500"></div>
+              <div class="aspect-square size-12 md:size-32 bg-blue-500"></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Repel -->
+        <article class="space-y-6">
+          <div class="rich-text">
+            <h3>Repel</h3>
+            <p>
+              A little layout that pushes items away from each other where there is space in the
+              viewport and stacks on small viewports.
+            </p>
+
+            <p>
+              Use any flexbox aligmnent value to configure how the items align. The defualt is
+              <code>.items-center</code>
+            </p>
+          </div>
+
+          <div
+            class="p-6 bg-stone-100 border border-stone-200 rounded-lg resize-x overflow-auto max-w-full min-w-xs dark:bg-stone-900 dark:border dark:border-stone-800"
+          >
+            <div class="repel">
+              <div class="aspect-video h-12 md:h-32 bg-blue-500"></div>
+              <div class="aspect-video h-12 md:h-32 bg-blue-500"></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Stack -->
+        <article class="space-y-6">
+          <div class="rich-text">
+            <h3>Stack</h3>
+            <p>Use <code>.space-y-*</code> for simplicity.</p>
+          </div>
+
+          <!-- <div
+            class="p-6 bg-stone-100 border border-stone-200 rounded-lg resize-x overflow-auto max-w-full min-w-xs dark:bg-stone-900 dark:border dark:border-stone-800"
+          >
+            <div class="switcher switcher-width-xs">
+              <div class="h-12 md:h-32 bg-blue-500"></div>
+              <div class="h-12 md:h-32 bg-blue-500"></div>
+              <div class="h-12 md:h-32 bg-blue-500"></div>
+              <div class="h-12 md:h-32 bg-blue-500"></div>
+            </div>
+          </div> -->
+        </article>
+
+        <!-- Switcher -->
+        <article class="space-y-6">
+          <div class="rich-text">
+            <h3>Switcher</h3>
+            <p>
+              A layout that allows you to lay 4 items next to each other until there is not enough
+              horizontal space to allow that.
+            </p>
+
+            <p>
+              Use <code>.switcher-width-*</code> to control how large the container needs to be to
+              allow items to sit inline with each other. This accepts any value based on the
+              container widths set in the theme.
+            </p>
+          </div>
+
+          <div
+            class="p-6 bg-stone-100 border border-stone-200 rounded-lg resize-x overflow-auto max-w-full min-w-xs dark:bg-stone-900 dark:border dark:border-stone-800"
+          >
+            <div class="switcher switcher-width-xs">
+              <div class="h-12 md:h-32 bg-blue-500"></div>
+              <div class="h-12 md:h-32 bg-blue-500"></div>
+              <div class="h-12 md:h-32 bg-blue-500"></div>
+              <div class="h-12 md:h-32 bg-blue-500"></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Frame -->
+        <article class="space-y-6">
+          <div class="rich-text">
+            <h3>Frame</h3>
+            <p>
+              A layout that allows you to control the aspect ratio of the element within it. Frame
+              is mostly useful for cropping media (videos and images) to a desired aspect ratio.
+              This accepts any value based on the aspect ratios set in the theme.
+            </p>
+          </div>
+
+          <div
+            class="p-6 bg-stone-100 border border-stone-200 rounded-lg dark:bg-stone-900 dark:border dark:border-stone-800"
+          >
+            <div class="cluster">
+              <div class="frame-cinema text-xs font-mono h-56 frame bg-blue-500">.frame-cinema</div>
+              <div class="frame-square text-xs font-mono h-56 frame bg-blue-500">.frame-square</div>
+              <div class="frame-photo text-xs font-mono h-56 frame bg-blue-500">.frame-photo</div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <hr />
+
+      <section class="space-y-8" aria-labelledby="utilities">
+        <h2 id="utilities" class="text-xl font-bold">General Utilities</h2>
+
+        <!-- Full Bleed -->
+        <article class="space-y-6">
+          <div class="rich-text">
+            <h3>Full Bleed</h3>
+
+            <p>
+              Add <code>.full-bleed</code> to an element to make it break out of it's container and
+              fill the width of the screen—Thanks
+              <a
+                href="https://archive.hankchizljaw.com/wrote/creating-a-full-bleed-css-utility/"
+                rel="external"
+                target="_blank"
+                >Andy Bell</a
+              >.
+            </p>
+            <p>This is perfect in combination with <code>.frame-*</code>.</p>
+            <p>
+              If you want some breathing room around the edges, add
+              <code>.w-[*vw]</code>.
+            </p>
+          </div>
+
+          <div class="aspect-ultrawide bg-blue-500 full-bleed"></div>
+        </article>
+
+        <!-- Stretch Link -->
+        <article class="space-y-6">
+          <div class="rich-text">
+            <h3>Stretch Link</h3>
+            <p>
+              The <code>.stretch-link</code> class is used to expand a link to cover the full parent
+              container. This is to avoid the evil sin of wrapping the entire content in an anchor
+              tag, which affects accessibility.
+            </p>
+            <p>
+              Make sure to add <code>.relative</code> to the parent element to prevent the link from
+              stretching outside the parent element.
+            </p>
+          </div>
+
+          <div
+            class="p-6 bg-stone-100 border border-stone-200 rounded-lg dark:bg-stone-900 dark:border dark:border-stone-800"
+          >
+            <article
+              class="w-full md:max-w-sm p-4 border border-stone-300 rounded-lg relative space-y-2 dark:border-stone-600"
+            >
+              <div class="aspect-photo bg-stone-200 rounded-md dark:bg-stone-700"></div>
+              <p class="text-lg font-bold">Card title</p>
+              <p class="text-sm">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, deleniti.
+              </p>
+              <a href="/" class="stretch-link">Card link</a>
+            </article>
+          </div>
+        </article>
+      </section>
+
+      <footer>
+        <span
+          >Crafted by <a href="https://mattgdyr.com" rel="external" target="_blank">Matt</a>.</span
+        >
+      </footer>
+    </div>
+  </body>
+</html>
