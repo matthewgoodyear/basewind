@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
@@ -80,7 +80,7 @@ Low-specificity, core defaults that apply to the whole project.
 
 @layer base {
   html {
-    @apply not-motion-reduce:scroll-smooth bg-blue-500;
+    @apply bg-blue-500 not-motion-reduce:scroll-smooth;
   }
 
   html,
@@ -89,7 +89,7 @@ Low-specificity, core defaults that apply to the whole project.
   }
 
   body {
-    @apply relative py-fl-2xl-3xl text-base text-stone-900 dark:text-stone-50 dark:bg-stone-950 bg-stone-50;
+    @apply py-fl-2xl-3xl relative bg-stone-50 text-base text-stone-900 dark:bg-stone-950 dark:text-stone-50;
   }
 
   p {
@@ -118,7 +118,11 @@ Low-specificity, core defaults that apply to the whole project.
   }
 
   a {
-    @apply underline underline-offset-2 hover:text-stone-50 hover:bg-stone-900 decoration-stone-900 dark:decoration-stone-50 dark:hover:bg-stone-50 dark:hover:text-stone-900;
+    @apply whitespace-nowrap underline decoration-stone-900 underline-offset-2 dark:decoration-stone-50;
+
+    &:hover {
+      @apply bg-stone-900 text-stone-50 dark:bg-stone-50 dark:text-stone-900;
+    }
   }
 
   hr {
@@ -135,7 +139,7 @@ Low-specificity, core defaults that apply to the whole project.
   }
 
   :focus-visible {
-    @apply outline-2 outline-offset-4 outline-inherit;
+    @apply rounded-[1px] outline-2 outline-offset-4 outline-inherit;
   }
 
   :target {
@@ -147,7 +151,7 @@ Low-specificity, core defaults that apply to the whole project.
   }
 
   code {
-    @apply bg-stone-200 py-0.5 px-1.5 dark:bg-stone-800;
+    @apply bg-stone-200 px-1.5 py-0.5 dark:bg-stone-800;
   }
 }
 
@@ -162,7 +166,7 @@ More complex, reusable design patterns that can be overridden with utility class
   }
 
   .btn {
-    @apply inline-flex items-center font-mono text-sm text-stone-900 justify-center gap-1 py-1 px-4 border no-underline rounded-sm text-center border-stone-300 bg-stone-300;
+    @apply inline-flex items-center justify-center gap-1 rounded-sm border border-stone-300 bg-stone-300 px-4 py-1 text-center font-mono text-sm text-stone-900 no-underline dark:border-stone-700 dark:bg-stone-700 dark:text-stone-50;
 
     &:hover {
       @apply brightness-90;
@@ -177,26 +181,26 @@ A collection of single-purpose utility classes.
 
 /* Wrapper */
 @utility wrapper {
-  @apply px-4 relative mx-auto max-w-4xl;
+  @apply relative mx-auto max-w-4xl px-4;
 }
 @utility wrapper-* {
-  @apply px-4 relative mx-auto;
-  max-width: --value(--container- *);
+  @apply relative mx-auto px-4;
+  max-width: --value(--container-*);
 }
 
 /* Cluster */
 @utility cluster {
-  @apply gap-4 flex items-center justify-start flex-wrap;
+  @apply flex flex-wrap items-center justify-start gap-4;
 }
 
 /* Repel */
 @utility repel {
-  @apply flex gap-4 flex-wrap items-center justify-between;
+  @apply flex flex-wrap items-center justify-between gap-4;
 }
 
 /* Switcher */
 @utility switcher {
-  @apply flex flex-wrap gap-4 items-start;
+  @apply flex flex-wrap items-start gap-4;
 
   > * {
     @apply grow;
@@ -211,21 +215,21 @@ A collection of single-purpose utility classes.
 }
 @utility switcher-width-* {
   > * {
-    flex-basis: calc((--value(--container- *) - 100%) * 999);
+    flex-basis: calc((--value(--container-*) - 100%) * 999);
   }
 }
 
 /* TODO - Stack */
 @utility stack-* {
   > * + * {
-    margin-top: --value(--spacing- *);
+    margin-top: --value(--spacing-*);
   }
 }
 
 /* Frame */
 @utility frame-* {
   @apply flex items-center justify-center overflow-hidden;
-  aspect-ratio: --value(--aspect- *);
+  aspect-ratio: --value(--aspect-*);
 
   > img,
   > video {
@@ -236,11 +240,27 @@ A collection of single-purpose utility classes.
 /* Stretch Link */
 @utility stretch-link {
   &::after {
-    @apply absolute content-[''] inset-0 z-10;
+    @apply absolute inset-0 z-10 content-[''];
   }
 }
 
 /* Full Bleed */
 @utility full-bleed {
-  @apply w-screen ml-[50%] -translate-x-1/2;
+  @apply ml-[50%] w-screen -translate-x-1/2;
+}
+
+/* Skip Link */
+@utility skip-link {
+  @apply absolute top-4 left-4 z-50 block size-px overflow-hidden p-4;
+  clip: rect(1px, 1px, 1px, 1px);
+
+  &:focus {
+    @apply h-auto w-auto overflow-visible;
+    clip: auto;
+  }
+
+  &:not(:focus) {
+    @apply absolute m-0 h-auto w-px overflow-hidden border-none p-0 whitespace-nowrap;
+    clip: rect(0 0 0 0);
+  }
 }
