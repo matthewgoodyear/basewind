@@ -89,7 +89,7 @@ Low-specificity, core defaults that apply to the whole project.
   }
 
   body {
-    @apply py-fl-2xl-3xl relative bg-stone-50 text-base text-stone-900 dark:bg-stone-950 dark:text-stone-50;
+    @apply py-fl-2xl-3xl relative min-h-screen bg-stone-50 text-base text-stone-900 dark:bg-stone-950 dark:text-stone-50;
   }
 
   p {
@@ -121,7 +121,7 @@ Low-specificity, core defaults that apply to the whole project.
     @apply whitespace-nowrap underline decoration-stone-900 underline-offset-2 dark:decoration-stone-50;
 
     &:hover {
-      @apply bg-stone-900 text-stone-50 dark:bg-stone-50 dark:text-stone-900;
+      @apply line-through;
     }
   }
 
@@ -166,7 +166,7 @@ More complex, reusable design patterns that can be overridden with utility class
   }
 
   .btn {
-    @apply inline-flex items-center justify-center gap-1 rounded-sm border border-stone-300 bg-stone-300 px-4 py-1 text-center font-mono text-sm text-stone-900 no-underline dark:border-stone-700 dark:bg-stone-700 dark:text-stone-50;
+    @apply inline-flex items-center justify-center gap-1 rounded-sm border border-stone-300 bg-stone-300 px-4 py-1 text-center text-stone-900 no-underline dark:border-stone-700 dark:bg-stone-700 dark:text-stone-50;
 
     &:hover {
       @apply brightness-90;
@@ -254,5 +254,29 @@ A collection of single-purpose utility classes.
   &:not(:focus) {
     @apply absolute m-0 h-auto w-px overflow-hidden border-none p-0 whitespace-nowrap;
     clip: rect(0 0 0 0);
+  }
+}
+
+/* Reel */
+@utility reel {
+  @apply flex h-auto snap-x gap-4 overflow-hidden overflow-x-auto;
+  -webkit-overflow-scrolling: touch;
+
+  > * {
+    @apply shrink-0;
+  }
+}
+@utility reel-snap-start {
+  @apply snap-mandatory;
+
+  > * {
+    @apply snap-start;
+  }
+}
+@utility reel-snap-center {
+  @apply snap-mandatory;
+
+  > * {
+    @apply snap-center;
   }
 }
