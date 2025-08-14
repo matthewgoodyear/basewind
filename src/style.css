@@ -47,21 +47,6 @@ THEME CONFIG
   --spacing-fl-2xl-3xl: clamp(4rem, 2.7826rem + 6.087vi, 7.5rem);
   --spacing-fl-3xl-4xl: clamp(6rem, 5.0435rem + 4.7826vi, 8.75rem);
 
-  /* Container */
-  --container-3xs: 16rem;
-  --container-2xs: 18rem;
-  --container-xs: 20rem;
-  --container-sm: 24rem;
-  --container-md: 28rem;
-  --container-lg: 32rem;
-  --container-xl: 36rem;
-  --container-2xl: 42rem;
-  --container-3xl: 48rem;
-  --container-4xl: 56rem;
-  --container-5xl: 64rem;
-  --container-6xl: 72rem;
-  --container-7xl: 80rem;
-
   /* Aspect Ratios */
   --aspect-square: 1 / 1;
   --aspect-photo: 3 / 2;
@@ -162,7 +147,7 @@ More complex, reusable design patterns that can be overridden with utility class
 
 @layer components {
   .rich-text {
-    @apply prose dark:prose-invert prose-stone prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg prose-h4:text-base prose-p:text-base prose-code:text-[80%] prose-code:before:content-none prose-code:after:content-none prose-p:dark:text-stone-50 prose-p:text-stone-900 prose-headings:text-stone-900 prose-headings:dark:text-stone-50 prose-a:hover:text-stone-50 prose-a:dark:hover:text-stone-900 prose-a:hover:decoration-stone-900 prose-a:dark:hover:decoration-stone-50;
+    @apply prose dark:prose-invert prose-stone prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg prose-h4:text-base prose-p:text-base prose-p:prose-code:text-[85%] prose-code:before:content-none prose-code:after:content-none prose-p:dark:text-stone-50 prose-p:text-stone-900 prose-headings:text-stone-900 prose-headings:dark:text-stone-50 prose-p:prose-code:text-blue-600 prose-a:hover:text-stone-50 prose-a:dark:hover:text-stone-900 prose-a:hover:decoration-stone-900 prose-a:dark:hover:decoration-stone-50;
   }
 
   .btn {
@@ -181,16 +166,23 @@ A collection of single-purpose utility classes.
 
 /* Wrapper */
 @utility wrapper {
-  @apply relative mx-auto max-w-4xl px-4;
+  --wrapper-max-w: var(--container-4xl);
+  --wrapper-px: --spacing(4);
+
+  @apply relative mx-auto max-w-[var(--wrapper-max-w)] px-[var(--wrapper-px)];
 }
-@utility wrapper-* {
-  @apply relative mx-auto px-4;
-  max-width: --value(--container-*);
+@utility wrapper-max-w-* {
+  --wrapper-max-w: --value(--container-*);
 }
 
 /* Cluster */
 @utility cluster {
-  @apply flex flex-wrap items-center justify-start gap-4;
+  --cluster-gap: --spacing(4);
+
+  @apply flex flex-wrap items-center justify-start gap-[var(--cluster-gap)];
+}
+@utility cluster-gap-* {
+  --cluster-gap: --spacing(--value(number, --spacing-*));
 }
 
 /* Repel */
@@ -198,13 +190,28 @@ A collection of single-purpose utility classes.
   @apply flex flex-wrap items-center justify-between gap-4;
 }
 
+/* Stack */
+@utility stack {
+  --stack-space: 1em;
+
+  > * + * {
+    @apply mt-[var(--stack-space)];
+  }
+}
+@utility stack-space-* {
+  --stack-space: --spacing(--value(number, --spacing-*));
+}
+
 /* Switcher */
 @utility switcher {
-  @apply flex flex-wrap items-start gap-4;
+  --switcher-w: 40rem;
+  --switcher-gap: --spacing(4);
+
+  @apply flex flex-wrap items-start gap-[var(--switcher-gap)];
 
   > * {
     @apply grow;
-    flex-basis: calc((40rem - 100%) * 999);
+    flex-basis: calc((var(--switcher-w) - 100%) * 999);
   }
 
   > :nth-last-child(n + 5),
@@ -212,10 +219,11 @@ A collection of single-purpose utility classes.
     @apply basis-full;
   }
 }
-@utility switcher-width-* {
-  > * {
-    flex-basis: calc((--value(--container-*) - 100%) * 999);
-  }
+@utility switcher-w-* {
+  --switcher-w: --value(--container-*);
+}
+@utility switcher-gap-* {
+  --switcher-gap: --spacing(--value(number, --spacing-*));
 }
 
 /* Frame */
@@ -264,6 +272,10 @@ A collection of single-purpose utility classes.
 
   > * {
     @apply shrink-0;
+  }
+
+  > img {
+    @apply h-full w-auto;
   }
 }
 @utility reel-snap-start {

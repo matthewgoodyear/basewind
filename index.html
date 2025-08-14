@@ -13,6 +13,10 @@
 
     <header id="site-header">
       <div class="wrapper | space-y-8">
+        <span
+          class="w-full rounded-sm bg-orange-600 px-3 py-1 font-mono text-sm text-white"
+          >In progress</span
+        >
         <h1 class="text-3xl font-bold">Basewind</h1>
 
         <p>
@@ -53,20 +57,19 @@
                 lists, or inline navigation.
               </p>
               <p>
-                Use <code>.gap-*</code> to control the gap between each cluster
-                item.
+                Use <code>.cluster-gap-*</code> to control the space between
+                each item.
               </p>
               <p>
                 Use any flexbox aligmnent value to configure how the items
-                align. The defualt is
-                <code>.items-center</code>
+                align. The defualt is <code>.items-center</code>.
               </p>
             </div>
 
             <div
               class="max-w-full min-w-xs resize-x overflow-auto rounded-lg border border-stone-200 bg-stone-100 p-6 dark:border dark:border-stone-800 dark:bg-stone-900"
             >
-              <div class="cluster | gap-2">
+              <div class="cluster cluster-gap-2">
                 <div class="aspect-square size-12 bg-blue-500 md:size-32"></div>
                 <div class="aspect-square size-12 bg-blue-500 md:size-32"></div>
                 <div class="aspect-square size-12 bg-blue-500 md:size-32"></div>
@@ -88,8 +91,7 @@
               </p>
               <p>
                 Use any flexbox aligmnent value to configure how the items
-                align. The defualt is
-                <code>.items-center</code>
+                align. The defualt is <code>.items-center</code>.
               </p>
             </div>
 
@@ -107,15 +109,37 @@
           <article class="space-y-6">
             <div class="rich-text">
               <h3>Stack</h3>
-              <p>Class: <code>.space-y-*</code></p>
+              <p>Class: <code>.stack</code></p>
               <p>
                 Vertically stacks elements with consistent spacing. Perfect for
                 sections, form fields, or lists where vertical rhythm matters.
               </p>
               <p>
-                I've decided to use <code>.space-y-*</code> for simplicity,
-                since it does the same thing.
+                By default, the spacing is <code>1em</code> (equal to the
+                element’s font size). Control the spacing with
+                <code>.stack-space-*</code>, using values frm the default or
+                custom spacing values set in the theme.
               </p>
+              <p>
+                To adjust spacing for a single child, use
+                <code>.stack-space-*</code> on that element. For example,
+                applying <code>.stack-space-12</code> to the third child in a
+                <code>.stack</code> will give it a <code>48px</code> top margin,
+                without affecting the rest.
+              </p>
+            </div>
+
+            <div
+              class="rounded-lg border border-stone-200 bg-stone-100 p-6 dark:border dark:border-stone-800 dark:bg-stone-900"
+            >
+              <div class="stack">
+                <div class="h-12 w-full bg-blue-500 md:h-16"></div>
+                <div class="h-12 w-full bg-blue-500 md:h-16"></div>
+                <div
+                  class="stack-space-12 h-12 w-full bg-blue-500 md:h-16"
+                ></div>
+                <div class="h-12 w-full bg-blue-500 md:h-16"></div>
+              </div>
             </div>
           </article>
 
@@ -129,19 +153,22 @@
                 and switches to a vertical stack on smaller widths. Useful for
                 responsive navigation, feature grids, or grouped controls.
               </p>
-
               <p>
-                Use <code>.switcher-width-*</code> to control how large the
+                Use <code>.switcher-w-*</code> to control how large the
                 container needs to be to allow items to sit inline with each
                 other. This accepts any value based on the container widths set
                 in the theme.
+              </p>
+              <p>
+                Use <code>.switcher-gap-*</code> to control the space between
+                each item.
               </p>
             </div>
 
             <div
               class="max-w-full min-w-xs resize-x overflow-auto rounded-lg border border-stone-200 bg-stone-100 p-6 dark:border dark:border-stone-800 dark:bg-stone-900"
             >
-              <div class="switcher switcher-width-xs">
+              <div class="switcher switcher-w-sm">
                 <div class="h-12 bg-blue-500 md:h-32"></div>
                 <div class="h-12 bg-blue-500 md:h-32"></div>
                 <div class="h-12 bg-blue-500 md:h-32"></div>
@@ -153,7 +180,7 @@
           <article class="space-y-6">
             <div class="rich-text">
               <h3>Frame</h3>
-              <p>Class: <code>.frame</code></p>
+              <p>Class: <code>.frame-*</code></p>
               <p>
                 Maintains a fixed aspect ratio for its content (images, videos,
                 embeds) while allowing it to scale responsively without
@@ -167,17 +194,17 @@
             >
               <div class="cluster">
                 <div
-                  class="frame-cinema frame h-56 bg-blue-500 font-mono text-sm"
+                  class="frame-cinema frame h-56 bg-blue-500 font-mono text-sm text-white"
                 >
                   .frame-cinema
                 </div>
                 <div
-                  class="frame-square frame h-56 bg-blue-500 font-mono text-sm"
+                  class="frame-square frame h-56 bg-blue-500 font-mono text-sm text-white"
                 >
                   .frame-square
                 </div>
                 <div
-                  class="frame-photo frame h-56 bg-blue-500 font-mono text-sm"
+                  class="frame-photo frame h-56 bg-blue-500 font-mono text-sm text-white"
                 >
                   .frame-photo
                 </div>
