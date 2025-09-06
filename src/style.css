@@ -10,8 +10,6 @@ THEME CONFIG
   /* Resets */
   --aspect-*: initial;
 
-  /* Font Family */
-
   /* Font Size */
   --text-sm: clamp(0.8889rem, 0.8455rem + 0.2168vi, 1rem);
   --text-base: clamp(1rem, 0.9024rem + 0.4878vi, 1.25rem);
@@ -24,28 +22,6 @@ THEME CONFIG
   --color-current: currentColor;
   --color-black: hsl(0, 0%, 2%);
   --color-white: hsl(0, 0%, 98%);
-
-  /* Spacing */
-  --spacing-fl-3xs: clamp(0.25rem, 0.2283rem + 0.1087vi, 0.3125rem);
-  --spacing-fl-2xs: clamp(0.5rem, 0.4565rem + 0.2174vi, 0.625rem);
-  --spacing-fl-xs: clamp(0.75rem, 0.6848rem + 0.3261vi, 0.9375rem);
-  --spacing-fl-sm: clamp(1rem, 0.913rem + 0.4348vi, 1.25rem);
-  --spacing-fl-md: clamp(1.5rem, 1.3696rem + 0.6522vi, 1.875rem);
-  --spacing-fl-lg: clamp(2rem, 1.8261rem + 0.8696vi, 2.5rem);
-  --spacing-fl-xl: clamp(3rem, 2.7391rem + 1.3043vi, 3.75rem);
-  --spacing-fl-2xl: clamp(4rem, 3.6522rem + 1.7391vi, 5rem);
-  --spacing-fl-3xl: clamp(6rem, 5.4783rem + 2.6087vi, 7.5rem);
-  --spacing-fl-4xl: clamp(7rem, 6.3913rem + 3.0435vi, 8.75rem);
-
-  --spacing-fl-3xs-2xs: clamp(0.25rem, 0.1196rem + 0.6522vi, 0.625rem);
-  --spacing-fl-2xs-xs: clamp(0.5rem, 0.3478rem + 0.7609vi, 0.9375rem);
-  --spacing-fl-xs-sm: clamp(0.75rem, 0.5761rem + 0.8696vi, 1.25rem);
-  --spacing-fl-sm-md: clamp(1rem, 0.6957rem + 1.5217vi, 1.875rem);
-  --spacing-fl-md-lg: clamp(1.5rem, 1.1522rem + 1.7391vi, 2.5rem);
-  --spacing-fl-lg-xl: clamp(2rem, 1.3913rem + 3.0435vi, 3.75rem);
-  --spacing-fl-xl-2xl: clamp(3rem, 2.3043rem + 3.4783vi, 5rem);
-  --spacing-fl-2xl-3xl: clamp(4rem, 2.7826rem + 6.087vi, 7.5rem);
-  --spacing-fl-3xl-4xl: clamp(6rem, 5.0435rem + 4.7826vi, 8.75rem);
 
   /* Aspect Ratios */
   --aspect-square: 1 / 1;
