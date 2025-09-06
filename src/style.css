@@ -50,7 +50,7 @@ Low-specificity, core defaults that apply to the whole project.
   }
 
   body {
-    @apply py-fl-2xl-3xl relative min-h-screen bg-stone-50 text-base text-stone-900 dark:bg-stone-950 dark:text-stone-50;
+    @apply relative min-h-screen bg-stone-50 py-32 text-base text-stone-900 dark:bg-stone-950 dark:text-stone-50;
   }
 
   p {
