@@ -9,6 +9,7 @@ THEME CONFIG
 @theme {
   /* Resets */
   --aspect-*: initial;
+  --text-*: initial;
 
   /* Font Size */
   --text-sm: clamp(0.8889rem, 0.8455rem + 0.2168vi, 1rem);
@@ -17,6 +18,9 @@ THEME CONFIG
   --text-xl: clamp(1.2656rem, 0.9973rem + 1.3415vi, 1.9531rem);
   --text-2xl: clamp(1.4238rem, 1.0267rem + 1.9855vi, 2.4414rem);
   --text-3xl: clamp(1.6018rem, 1.036rem + 2.8292vi, 3.0518rem);
+
+  /* Spacing */
+  --spacing-custom: 4rem;
 
   /* Colours */
   --color-current: currentColor;
@@ -32,6 +36,39 @@ THEME CONFIG
   --aspect-phone: 9 / 16;
   --aspect-cinema: 1.85 / 1;
   --aspect-ultrawide: 18 / 5;
+
+  /* Easings - @link https://www.easing.dev/ */
+  --ease-anticipate: cubic-bezier(1, -0.4, 0.35, 0.95);
+  --ease-linear: cubic-bezier(0, 0, 1, 1);
+
+  --ease-out: cubic-bezier(0, 0, 0.58, 1);
+  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-out-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
+  --ease-out-overshoot: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-out-quick: cubic-bezier(0, 0, 0.2, 1);
+  --ease-out-swift: cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  --ease-out-snappy: cubic-bezier(0.19, 1, 0.22, 1);
+
+  --ease-in: cubic-bezier(0.42, 0, 1, 1);
+  --ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  --ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  --ease-in-quart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+  --ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+  --ease-in-expo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  --ease-in-circ: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+
+  --ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
+  --ease-in-out-base: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+  --ease-in-out-expo: cubic-bezier(1, 0, 0, 1);
+  --ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 
 /* 
@@ -51,6 +88,32 @@ Low-specificity, core defaults that apply to the whole project.
 
   body {
     @apply relative min-h-screen bg-stone-50 py-32 text-base text-stone-900 dark:bg-stone-950 dark:text-stone-50;
+
+    /* Default border colour */
+    *,
+    ::before,
+    ::after {
+      @apply border-stone-200 dark:border-stone-800;
+    }
+  }
+
+  /* 
+  SAFARI FIX
+  Add to body and remove on load with JS to
+  fix issues with transitions on load.
+  */
+  body.preload,
+  body.preload *:not(#swup) {
+    animation-duration: 0s !important;
+    -webkit-animation-duration: 0s !important;
+    transition:
+      background-color 0s,
+      opacity 0s,
+      color 0s,
+      width 0s,
+      height 0s,
+      padding 0s,
+      margin 0s !important;
   }
 
   p {
@@ -158,7 +221,8 @@ A collection of single-purpose utility classes.
   @apply flex flex-wrap items-center justify-start gap-[var(--cluster-gap)];
 }
 @utility cluster-gap-* {
-  --cluster-gap: --spacing(--value(number, --spacing-*));
+  --cluster-gap: --spacing(--value(number));
+  --cluster-gap: --value(--spacing-*);
 }
 
 /* Repel */
@@ -175,7 +239,14 @@ A collection of single-purpose utility classes.
   }
 }
 @utility stack-space-* {
-  --stack-space: --spacing(--value(number, --spacing-*));
+  --stack-space: --spacing(--value(number));
+  --stack-space: --value(--spacing-*);
+}
+@utility stack-child-space-* {
+  --stack-child-space: --spacing(--value(number));
+  --stack-child-space: --value(--spacing-*);
+
+  @apply mt-[var(--stack-child-space)];
 }
 
 /* Switcher */
@@ -199,7 +270,8 @@ A collection of single-purpose utility classes.
   --switcher-w: --value(--container-*);
 }
 @utility switcher-gap-* {
-  --switcher-gap: --spacing(--value(number, --spacing-*));
+  --switcher-gap: --spacing(--value(number));
+  --switcher-gap: --value(--spacing-*);
 }
 
 /* Frame */
@@ -207,6 +279,7 @@ A collection of single-purpose utility classes.
   @apply flex items-center justify-center overflow-hidden;
   aspect-ratio: --value(--aspect-*);
 
+  > *,
   > img,
   > video {
     @apply h-full w-full object-cover;

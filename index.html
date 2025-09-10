@@ -69,7 +69,7 @@
             <div
               class="max-w-full min-w-xs resize-x overflow-auto rounded-lg border border-stone-200 bg-stone-100 p-6 dark:border dark:border-stone-800 dark:bg-stone-900"
             >
-              <div class="cluster cluster-gap-2">
+              <div class="cluster">
                 <div class="aspect-square size-12 bg-blue-500 md:size-32"></div>
                 <div class="aspect-square size-12 bg-blue-500 md:size-32"></div>
                 <div class="aspect-square size-12 bg-blue-500 md:size-32"></div>
@@ -117,16 +117,17 @@
               <p>
                 By default, the spacing is <code>1em</code> (equal to the
                 element's font size). Control the spacing with
-                <code>.stack-space-*</code>, using values frm the default or
+                <code>.stack-space-*</code>, using values from the default or
                 custom spacing values set in the theme.
               </p>
               <p>
                 To adjust spacing for a single child, use
-                <code>.stack-space-*</code> on that element. For example,
-                applying <code>.stack-space-12</code> to the third child in a
-                <code>.stack</code> will give it a <code>48px</code> top margin,
-                without affecting the rest.
+                <code>.stack-child-space-*</code> on that element. For example,
+                applying <code>.stack-child-space-12</code> to the third child
+                in a <code>.stack</code> will give it a <code>48px</code> top
+                margin, without affecting the rest.
               </p>
+              <p>Stacks can also be nested.</p>
             </div>
 
             <div
@@ -136,8 +137,11 @@
                 <div class="h-12 w-full bg-blue-500 md:h-16"></div>
                 <div class="h-12 w-full bg-blue-500 md:h-16"></div>
                 <div
-                  class="stack-space-12 h-12 w-full bg-blue-500 md:h-16"
-                ></div>
+                  class="stack stack-space-2 stack-child-space-12 h-fit w-full bg-blue-500 p-2 md:h-fit"
+                >
+                  <div class="h-12 w-full bg-blue-300 md:h-16"></div>
+                  <div class="h-12 w-full bg-blue-300 md:h-16"></div>
+                </div>
                 <div class="h-12 w-full bg-blue-500 md:h-16"></div>
               </div>
             </div>
