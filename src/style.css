@@ -5,14 +5,14 @@
 
 :root {
   color-scheme: light dark;
-}
 
-:root[data-theme="dark"] {
-  color-scheme: dark;
-}
+  &[data-theme="dark"] {
+    color-scheme: dark;
+  }
 
-:root[data-theme="light"] {
-  color-scheme: light;
+  &[data-theme="light"] {
+    color-scheme: light;
+  }
 }
 
 /*
@@ -103,33 +103,13 @@ Low-specificity, core defaults that apply to the whole project.
   }
 
   body {
-    @apply relative min-h-screen bg-stone-50 py-32 text-base text-stone-900 dark:bg-stone-900 dark:text-stone-50;
+    @apply relative min-h-screen bg-stone-50 py-32 text-base text-stone-900 transition-colors duration-150 dark:bg-stone-900 dark:text-stone-50;
 
-    /* Default border colour */
     *,
     ::before,
     ::after {
       @apply border-stone-200 dark:border-stone-700;
     }
-  }
-
-  /* 
-  SAFARI FIX
-  Add to body and remove on load with JS to
-  fix issues with transitions on load.
-  */
-  body.preload,
-  body.preload *:not(#swup) {
-    animation-duration: 0s !important;
-    -webkit-animation-duration: 0s !important;
-    transition:
-      background-color 0s,
-      opacity 0s,
-      color 0s,
-      width 0s,
-      height 0s,
-      padding 0s,
-      margin 0s !important;
   }
 
   p {
@@ -197,7 +177,8 @@ Low-specificity, core defaults that apply to the whole project.
 
 /* 
 COMPONENTS
-More complex, reusable design patterns that can be overridden with utility classes.
+More complex, reusable design patterns that 
+can be overridden with utility classes.
 */
 
 @layer components {
@@ -255,26 +236,23 @@ A collection of single-purpose utility classes.
 
 /* Stack */
 @utility stack {
-  --stack-space: 1em;
-
-  > :not(.stack-ignore) + :not(.stack-ignore) {
+  > :where(:not(.stack-ignore)) + :where(:not(.stack-ignore)) {
+    --stack-space: 1em;
     @apply mt-[var(--stack-space)];
   }
 }
 @utility stack-* {
+  > :where(:not(.stack-ignore)) + :where(:not(.stack-ignore)) {
+    --stack-space: --spacing(--value(number));
+    --stack-space: --value(--spacing-*, [*]);
+  }
+}
+@utility stack-child-* {
   --stack-space: --spacing(--value(number));
   --stack-space: --value(--spacing-*, [*]);
 }
-@utility stack-child-* {
-  --stack-child-space: --spacing(--value(number));
-  --stack-child-space: --value(--spacing-*, [*]);
-
-  @apply mt-[var(--stack-child-space)];
-}
 @utility stack-ignore {
-  --stack-space: 0;
-
-  @apply contents;
+  @apply mt-0 contents;
 }
 
 /* Switcher */
@@ -321,9 +299,19 @@ A collection of single-purpose utility classes.
   }
 }
 
-/* Full Bleed */
-@utility full-bleed {
+/* Bleed */
+@utility bleed-full {
   @apply ml-[50%] w-screen -translate-x-1/2;
+}
+@utility bleed-right {
+  width: calc(50% + 50vw);
+  width: calc(50% + 50cqw);
+}
+@utility bleed-left {
+  width: calc(50% + 50vw);
+  width: calc(50% + 50cqw);
+  margin-left: calc(50% - 50vw);
+  margin-left: calc(50% - 50cqw);
 }
 
 /* Skip Link */

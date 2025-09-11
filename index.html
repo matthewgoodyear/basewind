@@ -21,7 +21,7 @@
     <script src="/theme.js"></script>
   </head>
 
-  <body class="stack stack-32">
+  <body class="stack stack-36">
     <div class="stack-ignore">
       <a class="skip-link" href="#site-main">Skip to main content</a>
 
@@ -135,7 +135,7 @@
               </p>
               <p>
                 Use <code>.cluster-*</code> to control the space between each
-                item.
+                item. By default, the spacing is <code>1rem</code>.
               </p>
               <p>
                 Use any flexbox aligmnent value to configure how the items
@@ -204,7 +204,6 @@
                 <code>.stack</code> will give it a <code>48px</code> top margin,
                 without affecting the rest.
               </p>
-              <p>Stacks can also be nested.</p>
               <p>
                 To remove elements from being affected by a stack context, wrap
                 them in a div with the class of <code>.stack-ignore</code>.
@@ -218,10 +217,17 @@
                 <div class="bg-accent h-12 w-full md:h-16"></div>
                 <div class="bg-accent h-12 w-full md:h-16"></div>
                 <div
-                  class="stack stack-child-12 bg-accent h-fit w-full p-4 md:h-fit"
+                  class="stack stack-24 stack-child-12 bg-accent h-fit w-full p-4 md:h-fit"
                 >
+                  <div class="stack stack-2 bg-accent-subtle h-fit w-full p-4">
+                    <div class="h-8 w-full bg-stone-50 md:h-12"></div>
+                    <div class="h-8 w-full bg-stone-50 md:h-12"></div>
+                    <div class="h-8 w-full bg-stone-50 md:h-12"></div>
+                  </div>
                   <div class="bg-accent-subtle h-8 w-full md:h-12"></div>
-                  <div class="bg-accent-subtle h-8 w-full md:h-12"></div>
+                  <div
+                    class="bg-accent-subtle stack-child-4 h-8 w-full md:h-12"
+                  ></div>
                 </div>
                 <div class="bg-accent h-12 w-full md:h-16"></div>
               </div>
@@ -332,30 +338,47 @@
         <section class="stack stack-8" aria-labelledby="utilities">
           <h2 id="utilities" class="text-xl font-bold">General Utilities</h2>
 
-          <!-- Full Bleed -->
+          <!-- Bleed -->
           <article class="stack stack-6">
             <div class="rich-text">
               <h3>Full Bleed</h3>
-              <p>Class: <code>.full-bleed</code></p>
+              <p>Class: <code>.bleed-*</code></p>
               <p>
-                Allows content to stretch the full viewport width, breaking out
-                of any container constraints like .wrapper. Ideal for
-                edge-to-edge images, backgrounds, or sections that visually
-                separate from the main layout.
+                Allows content to stretch to the viewport edge, breaking out of
+                any container constraints like .wrapper. Ideal for edge-to-edge
+                images, backgrounds, or sections that visually separate from the
+                main layout.
               </p>
               <p>
-                This works perfect in combination with <code>.frame-*</code>.
-              </p>
-              <p>
-                If you want some breathing room around the edges, add
+                <code>.bleed-full</code> makes content span the entire viewport
+                width. If you want some breathing room around the edges, add
                 <code>.w-[*vw]</code>.
+              </p>
+              <p>
+                <code>.bleed-left</code> or <code>.bleed-right</code> push
+                content out to one side only, creating asymmetrical breakouts.
+              </p>
+              <p>
+                These utilities work perfect in combination with
+                <code>.frame-*</code>.
               </p>
             </div>
 
             <div
-              class="aspect-ultrawide full-bleed bg-accent flex items-center justify-center font-mono text-sm text-white dark:text-black"
+              class="aspect-ultrawide bleed-full bg-accent flex items-center justify-center font-mono text-sm text-white dark:text-black"
             >
-              .full-bleed & .aspect-ultrawide
+              .bleed-full
+            </div>
+            <div
+              class="aspect-ultrawide bleed-right bg-accent flex items-center justify-center font-mono text-sm text-white dark:text-black"
+            >
+              .bleed-right
+            </div>
+
+            <div
+              class="aspect-ultrawide bleed-left bg-accent flex items-center justify-center font-mono text-sm text-white dark:text-black"
+            >
+              .bleed-left
             </div>
           </article>
 
@@ -380,7 +403,7 @@
               class="flex justify-center rounded-lg border bg-stone-100 p-6 dark:border dark:bg-stone-800"
             >
               <article
-                class="stack stack-2 relative w-full rounded-lg border border-stone-300 p-4 md:max-w-xs dark:border-stone-600"
+                class="stack group stack-2 hover:border-accent-subtle relative w-full rounded-lg border border-stone-300 p-4 md:max-w-xs dark:border-stone-600"
               >
                 <div
                   class="aspect-photo rounded-md bg-stone-200 dark:bg-stone-700"
