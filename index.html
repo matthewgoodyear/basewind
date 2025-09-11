@@ -1,53 +1,130 @@
 <!doctype html>
 
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Basewind | Supercharged Tailwind Config</title>
     <link rel="stylesheet" href="/src/style.css" />
+
+    <!-- Theme -->
+    <script>
+      (() => {
+        const savedTheme = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        const theme = savedTheme || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
+    <script src="/src/theme.js"></script>
   </head>
 
-  <body data-theme="light">
-    <a class="skip-link" href="#site-main">Skip to content</a>
+  <body class="stack stack-32">
+    <div class="stack-ignore">
+      <a class="skip-link" href="#site-main">Skip to main content</a>
+
+      <button
+        id="theme-toggle"
+        class="btn | fixed top-4 right-4 z-50 p-2"
+        aria-label="Change to dark theme"
+      >
+        <svg
+          id="light-icon"
+          class=""
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2" />
+          <path d="M12 20v2" />
+          <path d="m4.93 4.93 1.41 1.41" />
+          <path d="m17.66 17.66 1.41 1.41" />
+          <path d="M2 12h2" />
+          <path d="M20 12h2" />
+          <path d="m6.34 17.66-1.41 1.41" />
+          <path d="m19.07 4.93-1.41 1.41" />
+        </svg>
+
+        <svg
+          id="dark-icon"
+          class="hidden"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"
+          />
+        </svg>
+      </button>
+    </div>
 
     <header id="site-header">
-      <div class="wrapper | space-y-8">
-        <span
-          class="w-full rounded-sm bg-orange-600 px-3 py-1 font-mono text-sm text-white"
-          >In progress</span
-        >
+      <div class="wrapper | stack stack-[1.5em]">
         <h1 class="text-3xl font-bold">Basewind</h1>
 
         <p>
           A supercharged Tailwind config with simple, custom composition
           utilities inspired by
-          <a href="https://every-layout.dev/" rel="external">Every Layout</a>,
-          plus fluid typography and spacing scales created with
-          <a href="https://utopia.fyi/" rel="external">Utopia</a>. Includes
-          sensible global styles I find myself adding to nearly every project,
-          along with a growing collection of general-purpose utilities.
+          <a
+            href="https://every-layout.dev/"
+            rel="noopener noreferrer"
+            target="_blank"
+            >Every Layout</a
+          >, plus fluid typography created with
+          <a
+            href="https://utopia.fyi/"
+            rel="noopener noreferrer"
+            target="_blank"
+            >Utopia</a
+          >. Includes sensible global styles I find myself adding to nearly
+          every project, along with a growing collection of general-purpose
+          utilities.
         </p>
 
         <a
           href="https://github.com/matthewgoodyear/basewind"
-          class="btn"
+          class="btn text-sm"
           rel="noopener noreferrer"
           target="_blank"
-          >Git Repo</a
         >
+          <svg
+            class="size-4"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
+            />
+            <path d="M9 18c-4.51 2-5-2-7-2" />
+          </svg>
+          Git Repo
+        </a>
       </div>
     </header>
 
-    <main id="site-main" class="py-24">
-      <div class="wrapper space-y-24">
-        <section class="space-y-8" aria-labelledby="compositions">
+    <main id="site-main">
+      <div class="wrapper stack stack-24">
+        <section class="stack stack-8" aria-labelledby="compositions">
           <h2 id="compositions" class="text-xl font-bold">
             Composition Utilities
           </h2>
 
           <!-- Cluster -->
-          <article class="space-y-6">
+          <article class="stack stack-6">
             <div class="rich-text">
               <h3>Cluster</h3>
               <p>Class: <code>.cluster</code></p>
@@ -57,8 +134,8 @@
                 lists, or inline navigation.
               </p>
               <p>
-                Use <code>.cluster-gap-*</code> to control the space between
-                each item.
+                Use <code>.cluster-*</code> to control the space between each
+                item.
               </p>
               <p>
                 Use any flexbox aligmnent value to configure how the items
@@ -67,19 +144,19 @@
             </div>
 
             <div
-              class="max-w-full min-w-xs resize-x overflow-auto rounded-lg border border-stone-200 bg-stone-100 p-6 dark:border dark:border-stone-800 dark:bg-stone-900"
+              class="max-w-full min-w-xs resize-x overflow-auto rounded-lg border bg-stone-100 p-6 dark:border dark:bg-stone-800"
             >
               <div class="cluster">
-                <div class="aspect-square size-12 bg-blue-500 md:size-32"></div>
-                <div class="aspect-square size-12 bg-blue-500 md:size-32"></div>
-                <div class="aspect-square size-12 bg-blue-500 md:size-32"></div>
-                <div class="aspect-square size-12 bg-blue-500 md:size-32"></div>
+                <div class="bg-accent aspect-square size-12 md:size-32"></div>
+                <div class="bg-accent aspect-square size-12 md:size-32"></div>
+                <div class="bg-accent aspect-square size-12 md:size-32"></div>
+                <div class="bg-accent aspect-square size-12 md:size-32"></div>
               </div>
             </div>
           </article>
 
           <!-- Repel -->
-          <article class="space-y-6">
+          <article class="stack stack-6">
             <div class="rich-text">
               <h3>Repel</h3>
               <p>Class: <code>.repel</code></p>
@@ -96,17 +173,17 @@
             </div>
 
             <div
-              class="max-w-full min-w-xs resize-x overflow-auto rounded-lg border border-stone-200 bg-stone-100 p-6 dark:border dark:border-stone-800 dark:bg-stone-900"
+              class="max-w-full min-w-xs resize-x overflow-auto rounded-lg border bg-stone-100 p-6 dark:border dark:bg-stone-800"
             >
               <div class="repel">
-                <div class="aspect-video h-12 bg-blue-500 md:h-32"></div>
-                <div class="aspect-video h-12 bg-blue-500 md:h-32"></div>
+                <div class="bg-accent aspect-video h-12 md:h-32"></div>
+                <div class="bg-accent aspect-video h-12 md:h-32"></div>
               </div>
             </div>
           </article>
 
           <!-- Stack -->
-          <article class="space-y-6">
+          <article class="stack stack-6">
             <div class="rich-text">
               <h3>Stack</h3>
               <p>Class: <code>.stack</code></p>
@@ -117,38 +194,42 @@
               <p>
                 By default, the spacing is <code>1em</code> (equal to the
                 element's font size). Control the spacing with
-                <code>.stack-space-*</code>, using values from the default or
-                custom spacing values set in the theme.
+                <code>.stack-*</code>, using values from the default or custom
+                spacing values set in the theme.
               </p>
               <p>
                 To adjust spacing for a single child, use
-                <code>.stack-child-space-*</code> on that element. For example,
-                applying <code>.stack-child-space-12</code> to the third child
-                in a <code>.stack</code> will give it a <code>48px</code> top
-                margin, without affecting the rest.
+                <code>.stack-child-*</code> on that element. For example,
+                applying <code>.stack-child-12</code> to the third child in a
+                <code>.stack</code> will give it a <code>48px</code> top margin,
+                without affecting the rest.
               </p>
               <p>Stacks can also be nested.</p>
+              <p>
+                To remove elements from being affected by a stack context, wrap
+                them in a div with the class of <code>.stack-ignore</code>.
+              </p>
             </div>
 
             <div
-              class="rounded-lg border border-stone-200 bg-stone-100 p-6 dark:border dark:border-stone-800 dark:bg-stone-900"
+              class="rounded-lg border bg-stone-100 p-6 dark:border dark:bg-stone-800"
             >
               <div class="stack">
-                <div class="h-12 w-full bg-blue-500 md:h-16"></div>
-                <div class="h-12 w-full bg-blue-500 md:h-16"></div>
+                <div class="bg-accent h-12 w-full md:h-16"></div>
+                <div class="bg-accent h-12 w-full md:h-16"></div>
                 <div
-                  class="stack stack-space-2 stack-child-space-12 h-fit w-full bg-blue-500 p-2 md:h-fit"
+                  class="stack stack-child-12 bg-accent h-fit w-full p-4 md:h-fit"
                 >
-                  <div class="h-12 w-full bg-blue-300 md:h-16"></div>
-                  <div class="h-12 w-full bg-blue-300 md:h-16"></div>
+                  <div class="bg-accent-subtle h-8 w-full md:h-12"></div>
+                  <div class="bg-accent-subtle h-8 w-full md:h-12"></div>
                 </div>
-                <div class="h-12 w-full bg-blue-500 md:h-16"></div>
+                <div class="bg-accent h-12 w-full md:h-16"></div>
               </div>
             </div>
           </article>
 
           <!-- Switcher -->
-          <article class="space-y-6">
+          <article class="stack stack-6">
             <div class="rich-text">
               <h3>Switcher</h3>
               <p>Class: <code>.switcher</code></p>
@@ -158,10 +239,10 @@
                 responsive navigation, feature grids, or grouped controls.
               </p>
               <p>
-                Use <code>.switcher-w-*</code> to control how large the
-                container needs to be to allow items to sit inline with each
-                other. This accepts any value based on the container widths set
-                in the theme.
+                Use <code>.switcher-*</code> to control how large the container
+                needs to be to allow items to sit inline with each other. This
+                accepts any value based on the container widths set in the
+                theme.
               </p>
               <p>
                 Use <code>.switcher-gap-*</code> to control the space between
@@ -170,18 +251,18 @@
             </div>
 
             <div
-              class="max-w-full min-w-xs resize-x overflow-auto rounded-lg border border-stone-200 bg-stone-100 p-6 dark:border dark:border-stone-800 dark:bg-stone-900"
+              class="max-w-full min-w-xs resize-x overflow-auto rounded-lg border bg-stone-100 p-6 dark:border dark:bg-stone-800"
             >
               <div class="switcher switcher-w-sm">
-                <div class="h-12 bg-blue-500 md:h-32"></div>
-                <div class="h-12 bg-blue-500 md:h-32"></div>
-                <div class="h-12 bg-blue-500 md:h-32"></div>
+                <div class="bg-accent h-12 md:h-32"></div>
+                <div class="bg-accent h-12 md:h-32"></div>
+                <div class="bg-accent h-12 md:h-32"></div>
               </div>
             </div>
           </article>
 
           <!-- Frame -->
-          <article class="space-y-6">
+          <article class="stack stack-6">
             <div class="rich-text">
               <h3>Frame</h3>
               <p>Class: <code>.frame-*</code></p>
@@ -194,21 +275,21 @@
             </div>
 
             <div
-              class="rounded-lg border border-stone-200 bg-stone-100 p-6 dark:border dark:border-stone-800 dark:bg-stone-900"
+              class="rounded-lg border bg-stone-100 p-6 dark:border dark:bg-stone-800"
             >
               <div class="cluster">
                 <div
-                  class="frame-cinema frame h-56 bg-blue-500 font-mono text-sm text-white"
+                  class="frame-cinema frame bg-accent h-56 font-mono text-sm text-white dark:text-black"
                 >
                   .frame-cinema
                 </div>
                 <div
-                  class="frame-square frame h-56 bg-blue-500 font-mono text-sm text-white"
+                  class="frame-square frame bg-accent h-56 font-mono text-sm text-white dark:text-black"
                 >
                   .frame-square
                 </div>
                 <div
-                  class="frame-photo frame h-56 bg-blue-500 font-mono text-sm text-white"
+                  class="frame-photo frame bg-accent h-56 font-mono text-sm text-white dark:text-black"
                 >
                   .frame-photo
                 </div>
@@ -217,12 +298,12 @@
           </article>
 
           <!-- Reel -->
-          <article class="space-y-6">
+          <article class="stack stack-6">
             <div class="rich-text">
               <h3>Reel</h3>
               <p>Class: <code>.reel</code></p>
               <p>
-                Creates a horizontal scrolling container for items that don’t
+                Creates a horizontal scrolling container for items that don't
                 fit in a single row, with optional snap points for smooth
                 navigation. Perfect for carousels, product lists, or galleries
                 on smaller screens.
@@ -234,27 +315,25 @@
             </div>
 
             <div
-              class="rounded-lg border border-stone-200 bg-stone-100 p-6 pr-0 dark:border dark:border-stone-800 dark:bg-stone-900"
+              class="rounded-lg border bg-stone-100 p-6 pr-0 dark:border dark:bg-stone-800"
             >
               <div class="reel | pr-6">
-                <div class="aspect-video h-12 bg-blue-500 md:h-32"></div>
-                <div
-                  class="aspect-photo/portrait h-12 bg-blue-500 md:h-32"
-                ></div>
-                <div class="aspect-video h-12 bg-blue-500 md:h-32"></div>
-                <div class="aspect-square h-12 bg-blue-500 md:h-32"></div>
-                <div class="aspect-photo h-12 bg-blue-500 md:h-32"></div>
-                <div class="aspect-video h-12 bg-blue-500 md:h-32"></div>
+                <div class="bg-accent aspect-video h-12 md:h-32"></div>
+                <div class="aspect-photo/portrait bg-accent h-12 md:h-32"></div>
+                <div class="bg-accent aspect-video h-12 md:h-32"></div>
+                <div class="bg-accent aspect-square h-12 md:h-32"></div>
+                <div class="aspect-photo bg-accent h-12 md:h-32"></div>
+                <div class="bg-accent aspect-video h-12 md:h-32"></div>
               </div>
             </div>
           </article>
         </section>
 
-        <section class="space-y-8" aria-labelledby="utilities">
+        <section class="stack stack-8" aria-labelledby="utilities">
           <h2 id="utilities" class="text-xl font-bold">General Utilities</h2>
 
           <!-- Full Bleed -->
-          <article class="space-y-6">
+          <article class="stack stack-6">
             <div class="rich-text">
               <h3>Full Bleed</h3>
               <p>Class: <code>.full-bleed</code></p>
@@ -274,20 +353,20 @@
             </div>
 
             <div
-              class="aspect-ultrawide full-bleed flex items-center justify-center bg-blue-500 font-mono text-sm"
+              class="aspect-ultrawide full-bleed bg-accent flex items-center justify-center font-mono text-sm text-white dark:text-black"
             >
               .full-bleed & .aspect-ultrawide
             </div>
           </article>
 
           <!-- Stretch Link -->
-          <article class="space-y-6">
+          <article class="stack stack-6">
             <div class="rich-text">
               <h3>Stretch Link</h3>
               <p>Class: <code>.stretch-link</code></p>
               <p>
                 Expands an inline link to cover its entire parent container,
-                making the whole area clickable while preserving the link’s
+                making the whole area clickable while preserving the link's
                 visual styling. Perfect for cards or list items where you want
                 easy, user-friendly click targets.
               </p>
@@ -298,10 +377,10 @@
             </div>
 
             <div
-              class="flex justify-center rounded-lg border border-stone-200 bg-stone-100 p-6 dark:border dark:border-stone-800 dark:bg-stone-900"
+              class="flex justify-center rounded-lg border bg-stone-100 p-6 dark:border dark:bg-stone-800"
             >
               <article
-                class="relative w-full space-y-2 rounded-lg border border-stone-300 p-4 md:max-w-xs dark:border-stone-600"
+                class="stack stack-2 relative w-full rounded-lg border border-stone-300 p-4 md:max-w-xs dark:border-stone-600"
               >
                 <div
                   class="aspect-photo rounded-md bg-stone-200 dark:bg-stone-700"
@@ -317,7 +396,7 @@
           </article>
 
           <!-- Skip Link -->
-          <article class="space-y-6">
+          <article class="stack stack-6">
             <div class="rich-text">
               <h3>Skip Link</h3>
               <p>Class: <code>.skip-link</code></p>

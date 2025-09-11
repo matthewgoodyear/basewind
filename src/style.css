@@ -1,8 +1,21 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
-/* 
+:root {
+  color-scheme: light dark;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+/*
 THEME CONFIG
 */
 
@@ -27,6 +40,12 @@ THEME CONFIG
   --color-black: hsl(0, 0%, 2%);
   --color-white: hsl(0, 0%, 98%);
 
+  --color-accent: light-dark(var(--color-blue-500), var(--color-blue-300));
+  --color-accent-subtle: light-dark(
+    var(--color-blue-300),
+    var(--color-blue-100)
+  );
+
   /* Aspect Ratios */
   --aspect-square: 1 / 1;
   --aspect-photo: 3 / 2;
@@ -40,7 +59,6 @@ THEME CONFIG
   /* Easings - @link https://www.easing.dev/ */
   --ease-anticipate: cubic-bezier(1, -0.4, 0.35, 0.95);
   --ease-linear: cubic-bezier(0, 0, 1, 1);
-
   --ease-out: cubic-bezier(0, 0, 0.58, 1);
   --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -52,7 +70,6 @@ THEME CONFIG
   --ease-out-quick: cubic-bezier(0, 0, 0.2, 1);
   --ease-out-swift: cubic-bezier(0.175, 0.885, 0.32, 1.1);
   --ease-out-snappy: cubic-bezier(0.19, 1, 0.22, 1);
-
   --ease-in: cubic-bezier(0.42, 0, 1, 1);
   --ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
   --ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
@@ -60,7 +77,6 @@ THEME CONFIG
   --ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
   --ease-in-expo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
   --ease-in-circ: cubic-bezier(0.6, 0.04, 0.98, 0.335);
-
   --ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
   --ease-in-out-base: cubic-bezier(0.25, 0.1, 0.25, 1);
   --ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
@@ -78,7 +94,7 @@ Low-specificity, core defaults that apply to the whole project.
 
 @layer base {
   html {
-    @apply bg-blue-500 not-motion-reduce:scroll-smooth;
+    @apply bg-accent not-motion-reduce:scroll-smooth;
   }
 
   html,
@@ -87,13 +103,13 @@ Low-specificity, core defaults that apply to the whole project.
   }
 
   body {
-    @apply relative min-h-screen bg-stone-50 py-32 text-base text-stone-900 dark:bg-stone-950 dark:text-stone-50;
+    @apply relative min-h-screen bg-stone-50 py-32 text-base text-stone-900 dark:bg-stone-900 dark:text-stone-50;
 
     /* Default border colour */
     *,
     ::before,
     ::after {
-      @apply border-stone-200 dark:border-stone-800;
+      @apply border-stone-200 dark:border-stone-700;
     }
   }
 
@@ -142,10 +158,10 @@ Low-specificity, core defaults that apply to the whole project.
   }
 
   a {
-    @apply whitespace-nowrap underline decoration-stone-900 underline-offset-2 dark:decoration-stone-50;
+    @apply whitespace-nowrap underline decoration-current underline-offset-2;
 
     &:hover {
-      @apply line-through;
+      @apply text-accent;
     }
   }
 
@@ -186,11 +202,14 @@ More complex, reusable design patterns that can be overridden with utility class
 
 @layer components {
   .rich-text {
-    @apply prose dark:prose-invert prose-stone prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg prose-h4:text-base prose-p:text-base prose-p:prose-code:text-[85%] prose-code:before:content-none prose-code:after:content-none prose-p:dark:text-stone-50 prose-p:text-stone-900 prose-headings:text-stone-900 prose-headings:dark:text-stone-50 prose-p:prose-code:text-blue-600 prose-a:hover:text-stone-50 prose-a:dark:hover:text-stone-900 prose-a:hover:decoration-stone-900 prose-a:dark:hover:decoration-stone-50;
+    @apply prose prose-stone prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg prose-h4:text-base prose-p:text-base prose-p:prose-code:text-[85%] prose-code:before:content-none prose-code:after:content-none prose-p:text-stone-900 prose-headings:text-stone-900 prose-p:prose-code:text-accent prose-a:hover:text-stone-50 prose-a:hover:decoration-stone-900;
+  }
+  .rich-text {
+    @apply dark:prose-invert prose-a:dark:hover:text-stone-900 prose-p:dark:text-stone-50 prose-headings:dark:text-stone-50 prose-a:dark:hover:decoration-stone-50;
   }
 
   .btn {
-    @apply inline-flex items-center justify-center gap-1 rounded-sm border border-stone-300 bg-stone-300 px-4 py-1 text-center text-stone-900 no-underline dark:border-stone-700 dark:bg-stone-700 dark:text-stone-50;
+    @apply inline-flex items-center justify-center gap-1 rounded-sm border border-stone-300 bg-stone-300 px-3 py-1 text-center text-stone-900 no-underline dark:border-stone-700 dark:bg-stone-700 dark:text-stone-50 [&_svg]:size-4 [&_svg]:stroke-stone-900 dark:[&_svg]:stroke-stone-50;
 
     &:hover {
       @apply brightness-90;
@@ -210,8 +229,12 @@ A collection of single-purpose utility classes.
 
   @apply relative mx-auto max-w-[var(--wrapper-max-w)] px-[var(--wrapper-px)];
 }
-@utility wrapper-max-w-* {
+@utility wrapper-* {
   --wrapper-max-w: --value(--container-*);
+}
+@utility wrapper-px-* {
+  --wrapper-px: --spacing(--value(number));
+  --wrapper-px: --value(--spacing-*, [*]);
 }
 
 /* Cluster */
@@ -220,9 +243,9 @@ A collection of single-purpose utility classes.
 
   @apply flex flex-wrap items-center justify-start gap-[var(--cluster-gap)];
 }
-@utility cluster-gap-* {
+@utility cluster-* {
   --cluster-gap: --spacing(--value(number));
-  --cluster-gap: --value(--spacing-*);
+  --cluster-gap: --value(--spacing-*, [*]);
 }
 
 /* Repel */
@@ -234,31 +257,36 @@ A collection of single-purpose utility classes.
 @utility stack {
   --stack-space: 1em;
 
-  > * + * {
+  > :not(.stack-ignore) + :not(.stack-ignore) {
     @apply mt-[var(--stack-space)];
   }
 }
-@utility stack-space-* {
+@utility stack-* {
   --stack-space: --spacing(--value(number));
-  --stack-space: --value(--spacing-*);
+  --stack-space: --value(--spacing-*, [*]);
 }
-@utility stack-child-space-* {
+@utility stack-child-* {
   --stack-child-space: --spacing(--value(number));
-  --stack-child-space: --value(--spacing-*);
+  --stack-child-space: --value(--spacing-*, [*]);
 
   @apply mt-[var(--stack-child-space)];
+}
+@utility stack-ignore {
+  --stack-space: 0;
+
+  @apply contents;
 }
 
 /* Switcher */
 @utility switcher {
-  --switcher-w: 40rem;
+  --switcher-width: 40rem;
   --switcher-gap: --spacing(4);
 
   @apply flex flex-wrap items-start gap-[var(--switcher-gap)];
 
   > * {
     @apply grow;
-    flex-basis: calc((var(--switcher-w) - 100%) * 999);
+    flex-basis: calc((var(--switcher-width) - 100%) * 999);
   }
 
   > :nth-last-child(n + 5),
@@ -266,12 +294,12 @@ A collection of single-purpose utility classes.
     @apply basis-full;
   }
 }
-@utility switcher-w-* {
-  --switcher-w: --value(--container-*);
+@utility switcher-* {
+  --switcher-width: --value(--container-*, [*]);
 }
 @utility switcher-gap-* {
   --switcher-gap: --spacing(--value(number));
-  --switcher-gap: --value(--spacing-*);
+  --switcher-gap: --value(--spacing-*, [*]);
 }
 
 /* Frame */
@@ -300,7 +328,7 @@ A collection of single-purpose utility classes.
 
 /* Skip Link */
 @utility skip-link {
-  @apply absolute top-4 left-4 z-50 block size-px overflow-hidden p-4;
+  @apply absolute top-4 left-4 z-[999] block size-px overflow-hidden p-4;
   clip: rect(1px, 1px, 1px, 1px);
 
   &:focus {
