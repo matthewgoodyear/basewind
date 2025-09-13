@@ -138,7 +138,7 @@ Low-specificity, core defaults that apply to the whole project.
   }
 
   a {
-    @apply whitespace-nowrap underline decoration-current underline-offset-2;
+    @apply underline decoration-current underline-offset-2;
 
     &:hover {
       @apply text-accent;
